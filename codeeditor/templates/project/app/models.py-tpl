@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+from django.db import models
+from django.contrib.auth.models import User,AbstractUser
+from simple_history.models import HistoricalRecords
+{% load codeeditor_tags %}
+# {{ table.name }} Model
+{% for table,fields in tables.items %}
+{% if table.name == "user" %}
+class {{ table.name }}Model(AbstractUser):
+    '''
+    {{ table.name }} Model
+    '''
+{% for field_str in fields %}
+    {{ field_str|safe }}
+{% endfor %}
+{% if table.is_history %}
+    history = HistoricalRecords()
+{% endif %}
+{% else %}
+class {{ table.name }}Model(models.Model):
+    '''
+    {{ table.name }} Model
+    '''
+{% for field_str in fields %}
+    {{ field_str|safe }}
+{% endfor %}
+{% if table.is_history %}
+    history = HistoricalRecords()
+{% endif %}
+{% endif %}
+    class Meta:
+        permissions = (
+            ('view_{{ table.name }}model', 'View {{ table.name }}Model'),
+        )
+{% endfor %}
+class FileModel(models.Model):
+    file = models.FileField(verbose_name=u"文件", help_text=u"", upload_to="file")

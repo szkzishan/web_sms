@@ -1,0 +1,61 @@
+数据库设计
+-----------------------------------------------
+模板：
+    名字              CharField
+    类别              CharField
+    简介              TextField
+    创建时间           TimeField
+    创建者             ForeignKey
+-----------------------------------------------
+模块：
+    名字              CharField
+    简介              TextField
+    模板_id           ForeignKey
+    创建时间          TimeField
+    创建者            ForeignKey
+-----------------------------------------------
+table：
+    名字             CharField
+    简介             TextField
+    模块_id          ForeignKey
+-----------------------------------------------
+field:
+    名字             CharField
+    简介             TextField
+    描述             TextField
+    table_id        ForeignKey
+    后端类型         CharField
+    前段类型         CharField
+    默认值           CharField
+    外键参数         CharField
+    是否为空         BooleanField
+    是否搜索         BooleanField
+    查询条件         TextField
+    是否创建         BooleanField
+    字段校验         CharField
+    校验错误提示     CharField
+------------------------------------------------
+field_serializer:
+	field_id              ForeignKey
+	serializer_name       TextField
+	is_reade              BooleanField
+	is_write              BooleanField
+
+-------------------------------------------------
+product:
+    名字            CharField
+    简介            TextField
+    创建时间         TimeField
+    创建者           ForeignKey
+    模板_id         ForeignKey
+
+product_module:
+	......
+product_table:
+	......
+product_field:
+	......
+product_field_serializer:
+	......
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="79008b01-624b-4676-92c7-42db54064ba1" name="qinglong_206" url="http://118.190.68.206">
+        <fileTransfer host="118.190.68.206" port="22" rootFolder="/home/qinglong" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="44f46287-1e6f-45de-b8af-cdef1eee63c1" name="yskj" url="http://47.94.133.188">
+        <fileTransfer host="47.94.133.188" port="22" rootFolder="/home/kyh" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

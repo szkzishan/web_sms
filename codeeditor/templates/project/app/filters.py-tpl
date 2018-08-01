@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+from models import *
+import rest_framework_filters as filterabc
+
+
+{% for table_name,extra in tables.items %}
+class {{ table_name }}BaseFilter(filterabc.FilterSet):
+    class Meta:
+        model = {{ table_name }}Model
+        fields = {{ extra.fields|safe }}
+{% endfor %}
+
+{% for table_name,extra in tables.items %}
+class {{ table_name }}Filter(filterabc.FilterSet):
+    {% for relate_filter in extra.relate_fields %}
+    {{ relate_filter|safe }}
+    {% endfor %}
+    class Meta:
+        model = {{ table_name }}Model
+        fields = {{ extra.fields|safe }}
+{% endfor %}

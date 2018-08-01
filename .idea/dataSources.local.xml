@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="yskj" uuid="30491148-054e-45f3-81ac-eef9e8eb8a10">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="editor@118.190.68.206" uuid="bd3e9db1-42b8-4bfd-bc74-161ada076f4d">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="@118.190.68.226" uuid="2aaef9f4-5278-4920-b571-5245cc4d6157">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+  </component>
+</project>

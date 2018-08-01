@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+from rest_framework import viewsets
+from serializers import *
+from models import *
+from rest_framework import routers
+from filters import *
+from rest_framework import permissions
+from rest_framework.filters import SearchFilter,OrderingFilter
+from rest_framework_filters.backends import DjangoFilterBackend
+from rest_framework import parsers,renderers
+from django.contrib.auth.models import Permission
+from rest_framework.decorators import api_view,permission_classes
+router = routers.SimpleRouter()
+
+# View %(table_name)s
+{% for table_name,extra in tables.items %}
+class {{ table_name|safe }}ViewSet(viewsets.ModelViewSet):
+    queryset = {{ table_name|safe }}Model.objects.all()
+    serializer_class = {{ table_name|safe }}Serializer
+    filter_backends = (SearchFilter,DjangoFilterBackend,OrderingFilter)
+    search_fields = {{ extra.search_fields|safe }}
+    filter_class = {{ table_name|safe }}Filter
+router.register(r'{{ table_name|safe }}', {{ table_name|safe }}ViewSet,base_name='{{ table_name|safe }}')
+{% endfor %}
+
+
+class FileViewSet(viewsets.ModelViewSet):
+    parser_classes = (parsers.FormParser, parsers.MultiPartParser,)
+{#    renderer_classes = (renderers.MultiPartRenderer,)#}
+    queryset = FileModel.objects.all()
+    serializer_class = FileSerializer
+
+
+router.register(r'file', FileViewSet, base_name="file")
+
+class PermissionViewSet(viewsets.ModelViewSet):
+    # permission_classes
+    http_method_names = ['get', ]
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+
+
+router.register(r'permission', PermissionViewSet, base_name="permission")
+
+# add permission to user
+class PermissionUserViewSet(viewsets.GenericViewSet):
+    serializer_class = PermissionUserSerializer
+    http_method_names = ("post","delete")
+    def create(self,request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return serializer.save()
+router.register(r'permissionuser', PermissionUserViewSet, base_name="permissionuser")
+
+@api_view(["GET", ])
+@permission_classes([permissions.IsAuthenticated,])
+def get_user_id(request):
+    user_id = request.user.id
+    return Response({"user_id": user_id})

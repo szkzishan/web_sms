@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+from rest_framework import serializers
+from models import *
+from django.contrib.auth.models import Permission
+from django.contrib.auth import get_user_model
+from rest_framework.response import Response
+from drf_queryfields import QueryFieldsMixin
+# base_template
+{% for name in tables_name %}
+class {{ name|safe }}BaseSerializer(QueryFieldsMixin,serializers.ModelSerializer):
+    '''
+    {{ name|safe }} Serializer
+    '''
+    class Meta:
+        model = {{ name|safe }}Model
+        fields = "__all__"
+
+{% endfor %}
+
+# serializer_template
+# %(table_name)s
+{% for table_name,extra in tables.items %}
+class {{ table_name }}Serializer(QueryFieldsMixin,serializers.ModelSerializer):
+    '''
+    {{ table_name }}
+    '''
+    {% for foreign_field in extra.foreign_fields %}
+    {{ foreign_field|safe }}
+    {% endfor %}
+    {% for relate_field in extra.relate_fields %}
+    {{ relate_field|safe }}
+    {% endfor %}
+    class Meta:
+        model = {{ table_name|safe }}Model
+        fields = "__all__"
+        extra_fields = {{ extra.extra_fields|safe }}
+{% endfor %}
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = ("id", "name",)
+
+
+class PermissionUserSerializer(QueryFieldsMixin,serializers.Serializer):
+    user_id = serializers.IntegerField()
+    permission_id = serializers.IntegerField()
+
+    def save(self, **kwargs):
+        user = get_user_model().objects.get(id=self.validated_data.get("user_id"))
+        permission = Permission.objects.get(id=self.validated_data.get("permission_id"))
+        user.user_permissions.add(permission)
+        return Response({"detial": "%s get %s permission" % (user.username, permission.name)})
+
+class FileSerializer(QueryFieldsMixin,serializers.ModelSerializer):
+    file = serializers.FileField(use_url=False)
+    class Meta:
+        model = FileModel
+        fields = "__all__"

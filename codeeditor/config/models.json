@@ -1,0 +1,10 @@
+{
+  "CharField": "%(field_name)s = models.%(field_type)s(max_length=255,blank=True, null=True,help_text=u'%(des)s', default=%(fdefault)s )",
+  "IntegerField": "%(field_name)s = models.%(field_type)s(blank=True, null=True,help_text=u'%(des)s', default=%(fdefault)d )",
+  "FloatField": "%(field_name)s = models.%(field_type)s(blank=True, null=True,help_text=u'%(des)s', default=%(fdefault).2f )",
+  "TextField": "%(field_name)s = models.%(field_type)s(blank=True, null=True,help_text=u'%(des)s', default=%(fdefault)s )",
+  "DateTimeField": "%(field_name)s = models.%(field_type)s(blank=True, null=True,help_text=u'%(des)s', auto_now_add=%(fdefault)s )",
+  "DateField": "%(field_name)s = models.%(field_type)s(blank=True, null=True,help_text=u'%(des)s', auto_now_add=%(fdefault)s )",
+  "BooleanField": "%(field_name)s = models.%(field_type)s(blank=True,help_text=u'%(des)s', default=%(fdefault)s )",
+  "ForeignKey": "%(field_name)s = models.%(field_type)s('%(param)sModel', related_name='%(related_name)s',help_text=u'%(des)s',blank=True, null=True)"
+}

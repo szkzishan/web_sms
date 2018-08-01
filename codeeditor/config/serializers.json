@@ -1,0 +1,4 @@
+{
+  "foreign_field_template":"%(field)s_get = %(table)sBaseSerializer(source='%(field)s',read_only=True)",
+  "relate_field_template":"%(field)s_get = %(table)sBaseSerializer(source='%(field)s',read_only=True,many=True)"
+}

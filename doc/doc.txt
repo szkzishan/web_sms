@@ -1,0 +1,72 @@
+1.创建app
+http://editor-sms.wei7star.com/codeeditor/app/
+
+2.创建table
+http://editor-sms.wei7star.com/codeeditor/table/
+
+3.table创建字段
+http://editor-sms.wei7star.com/codeeditor/field/
+
+
+以上api通过浏览器打开
+
+
+4.生成app
+http://editor-sms.wei7star.com/codeeditor/create_app/
+POST
+{
+"app_name":"ql01"
+}
+
+
+5.生成数据库表结构
+http://editor-sms.wei7star.com/codeeditor/create_table/
+POST
+{
+"app_name":"ql01"
+}
+
+
+6.获取所有字段类型
+http://editor-sms.wei7star.com/codeedite/getfields/
+GET
+
+
+
+# 需求说明
+目前只有 CharField 子段类型
+几个常用字段
+CharField       {"field_name":"","field_type":"CharField"}
+IntegerField    {"field_name":"","field_type":"IntegerField"}
+FloatField      {"field_name":"","field_type":"FloatField"}
+TextField       {"field_name":"","field_type":"TextField"}
+DateTimeField   {"field_name":"","field_type":"DateTimeField"}
+ForeignKey      {"field_name":"","field_type":"ForeignKey","table_name":""}
+
+CharField       字符串
+IntegerField    整数
+FloatField      浮点数
+TextField       文本
+DateTimeField   日期 时间
+ForeignKey      外键
+
+
+
+name__regex	         正则
+name__startswith	 开头匹配
+name__search	     查找
+name__gt	        大于
+name__gte	        大于等于
+name__iregex
+name__contains	    包含
+name__endswith	    结尾匹配
+name__iendswith
+name__icontains
+name__iexact
+name__isnull
+name__lt	        小于
+name__istartswith
+name__lte	        小于等于
+name__in	        name__in=zhangsan,lisi
+name__range         age__range=18,25
+name

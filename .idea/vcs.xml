@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/../angular4-primeng-admin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../hongtong-sms" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../ngx-admin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../primeng" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sms-haipai" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../vue-element-admin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../vueAdmin-template" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../wechat_jump_game" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../yunhu_sms" vcs="Git" />
+  </component>
+</project>

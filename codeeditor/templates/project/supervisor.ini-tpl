@@ -1,0 +1,16 @@
+; 设置进程的名称，使用 supervisorctl 来管理进程时需要使用该进程名
+[program:{{ project_name }}]
+command=python manage.py runserver 0.0.0.0:{{ server_port }}
+;numprocs=1                 ; 默认为1
+process_name=%(program_name)s   ; 默认为 %(program_name)s，即 [program:x] 中的 x
+directory={{ remote_project_path }}  ; 执行 command 之前，先切换到工作目录
+;user=oxygen                 ; 使用 oxygen 用户来启动该进程
+; ; 程序崩溃时自动重启，重启次数是有限制的，默认为3次
+autorestart=true
+redirect_stderr=true        ; 重定向输出的日志
+stdout_logfile = {{ remote_project_path }}/%(program_name)s.log
+loglevel=info
+; 默认为 false，如果设置为 true，当进程收到 stop 信号时，会自动将该信号发给该进程的子进程。如果这个配置项为 true，那么也隐含 killasgroup 为 true。例如在 Debug 模式使用 Flask 时，Flask 不会将接收到的 stop 信号也传递给它的子进程，因此就需要设置这个配置项。
+stopasgroup=true             ; send stop signal to the UNIX process
+; ; 默认为 false，如果设置为 true，当进程收到 kill 信号时，会自动将该信号发给该进程的子进程。如果这个程序使用了 python 的 multiprocessing 时，就能自动停止它的子线程。
+killasgroup=true             ; SIGKILL the UNIX process group (def false)
